@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生命周期函数</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // 生命周期函数:在某个时刻自动执行的函数
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "hello world",
+        };
+      },
+      // 在实例生成之前自动执行的函数
+      beforeCreate() {
+        console.log("beforeCreate");
+      },
+      // 在实例生成之后自动执行的函数
+      created() {
+        console.log("created");
+      },
+      // 在组件内容渲染到页面之前 自动执行
+      beforeMount() {
+        console.log(document.getElementById("root").innerHTML, "beforeMount");
+      },
+      // 在组件内容渲染到页面之后 自动执行
+      mounted() {
+        console.log(document.getElementById("root").innerHTML, "mounted");
+      },
+      // 当data数据发生变换时,
+      beforeUpdate() {
+        console.log(document.getElementById("root").innerHTML, "beforeUpdate");
+      },
+      // 当data数据发生变化，页面重新渲染后，自动执行
+      updated() {
+        console.log(document.getElementById("root").innerHTML, "updated");
+      },
+      // Vue应用失效时
+      beforeUnmount() {
+        console.log(document.getElementById("root").innerHTML, "beforeUnMount");
+      },
+      // Vue应用失效，且dom完全销毁
+      unmounted() {
+        console.log(document.getElementById("root").innerHTML, "unMounted");
+      },
+      template: "<div>{{message}}</div>",
+    });
+    // vm 代表的就是 Vue 应用的根组件
+    const vm = app.mount("#root");
+    setTimeout(() => {
+      vm.$data.message = "json";
+    }, 2000);
+    setTimeout(() => {
+      console.log(app.unmount);
+      app.unmount('#root');
+    }, 4000);
+  </script>
+</html>
