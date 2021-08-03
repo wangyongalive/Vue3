@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lesson 12</title>
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div>
+      <div @click.ctrl.exact="handleClick1">123</div>
+      <!-- 可以直接调用多个函数 但是要加括号 -->
+      <div @click="handleClick2(2,$event),handleClick3($event)">123</div>
+      <input @keydown.enter="handleKeyDown"/>
+      <div @click.left="handleLeftClick">鼠标修饰符</div> 
+      <div @click.left.exact="handleExactClick">精确修饰符(exact)</div> 
+    </div>
+  </div>
 </body>
 <script>
   // event, $event
   // 事件修饰符：stop, prevent, capture, self, once, passive
   // 按键修饰符：enter, tab, delete, esc, up, down, left, right
   // 鼠标修饰符：left, right, middle
-  // 精确修饰符：exact
+  // 精确修饰符：exact 不能包括其他按键
   const app = Vue.createApp({
     methods: {
-      handleClick() {
-        console.log('click')
+      /*不传递参数时,第一个参数是event*/
+      handleClick1(event) {
+        console.log(event);
       },
-    },
-    template: `
-      <div>
-        <div @click.ctrl.exact="handleClick">123</div>
-      </div>
-    `
+      handleClick2(num, event) {
+        console.log(num, event);
+      },
+      handleClick3(event) {
+        console.log(event);
+      },
+      handleKeyDown(){
+       console.log('handleKeyDown'); 
+      },
+      handleLeftClick(){
+        console.log('handleLeftClick');
+      },
+      handleExactClick(){
+        console.log('handleExactClick');
+      }
+    }
   });
 
   const vm = app.mount('#root');
 </script>
+
 </html>
