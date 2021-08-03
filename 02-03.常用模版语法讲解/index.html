@@ -10,14 +10,20 @@
   <div id="root"></div>
 </body>
 <script>
-  // {{}} 插值表达式
+  // {{}} 插值表达式,不能是语句
   // v-html，v-bind(:)，v-on(@), 动态参数，修饰符
   // prevent阻止默认行为
+  // v-once只会渲染一次
+  // [] 动态属性 
   const app = Vue.createApp({
     data() {
       return {
         message: "hello world",
         show: false,
+        vH:'<strong>hello world</strong>',
+        disable:true,
+        name:'title',
+        event:'click'
       }
     },
     methods: {
@@ -26,8 +32,11 @@
       }
     },
     template: `
-      <form action="https://www.baidu.com" @click.prevent="handleClick">
+      <form action="https://www.baidu.com" @[event].prevent="handleClick">
         <button type="submit">提交</button>
+        <div v-html="vH" :[name]="message"></div>
+        <input :disabled="disable">
+        <div v-once>{{message}}</div>
       </form>
     `
   });
