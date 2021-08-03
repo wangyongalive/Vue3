@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lesson 11</title>
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div>
+      <div v-for="(item,index) in listArray" :key="index">
+        {{item}} - {{index}}
+      </div>
+      <!-- v-if和v-for不能放在一起 template占位符 不会实际渲染-->
+      <template v-for="(value, key, index) in listObject" :key="index">
+        <div v-if="key !== 'lastName'">
+          {{value}} -- {{key}}
+        </div>
+      </template>
+      <div v-for="item in 10">{{item}}</div>
+      <button @click="handleAddBtnClick">新增</button>
+    </div>
+  </div>
 </body>
 <script>
   const app = Vue.createApp({
@@ -34,30 +50,17 @@
         // this.listArray = ['bye', 'world']
         // this.listArray = ['bye', 'wolrd'].filter(item => item === 'bye');
 
-        // 3. 直接更新数组的内容
+        // 3. 直接更新数组的内容(vue2中是无效的)
         // this.listArray[1] = 'hello'
 
-        // 直接添加对象的内容，也可以自动的展示出来
+        // 直接添加对象的内容，也可以自动的展示出来 (vue2中是无效的)
         // this.listObject.age = 100;
         // this.listObject.sex = 'male';
       }
-    },
-    template: `
-      <div>
-        <template
-          v-for="(value, key, index) in listObject"
-          :key="index"
-        >
-          <div v-if="key !== 'lastName'">
-            {{value}} -- {{key}}
-          </div>
-        </template>
-        <div v-for="item in 10">{{item}}</div>
-        <button @click="handleAddBtnClick">新增</button>
-      </div>
-    `
+    }
   });
 
   const vm = app.mount('#root');
 </script>
+
 </html>
