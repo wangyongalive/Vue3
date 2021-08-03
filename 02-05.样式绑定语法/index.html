@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,37 @@
     .red {
       color: red;
     }
+
     .green {
       color: green;
     }
   </style>
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div :style="styleObject" :class="classObject">
+      Hello World
+    </div>
+    <!-- 样式写在组件上  子组件通过$attrs.class接收 -->
+    <demo :class="classObject" />
+  </div>
 </body>
 <script>
   const app = Vue.createApp({
     data() {
       return {
+        /*class类型*/
         classString: 'red',
-        classObject: { red: false, green: true },
-        classArray: ['red', 'green', {brown: false}],
+        classObject: {
+          red: false,
+          green: true
+        },
+        classArray: ['red', 'green', {
+          brown: false
+        }],
+        /*行内style样式*/
         styleString: 'color: yellow;background: orange',
         styleObject: {
           color: 'orange',
@@ -31,11 +47,11 @@
         }
       }
     },
-    template: `
-      <div :style="styleObject">
-        Hello World
-      </div>
-    `
+    // template: `
+    //   <div :style="styleObject">
+    //     Hello World
+    //   </div>
+    // `
   });
 
   app.component('demo', {
@@ -47,4 +63,5 @@
 
   const vm = app.mount('#root');
 </script>
+
 </html>
