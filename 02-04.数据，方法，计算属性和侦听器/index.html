@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lesson 8</title>
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div> {{message}}</div>
+    <div @click='handleClick'>{{formatString(message)}}</div>
+    <div>{{total}}</div>
+    <div>{{getTotal()}}</div>
+    <div>{{newTotal}}</div>
+  </div>
 </body>
 <script>
   // data & methods & computed & watcher
@@ -23,32 +31,42 @@
       }
     },
     watch: {
+      // 可以执行异步操作
       // price 发生变化时，函数会执行
       price(current, prev) {
+        console.log('watch price');
         this.newTotal = current * this.count;
       }
     },
     computed: {
       // 当计算属性依赖的内容发生变更时，才会重新执行计算
       total() {
-        return Date.now() + this.count;
+        console.log('computed total');
+        return Date.now() + '' + this.count;
         // return this.count * this.price
       }
     },
     methods: {
+      handleClick() {
+        console.log('handleClick');
+      },
       formatString(string) {
+        console.log('formatString');
         return string.toUpperCase();
       },
       // 只要页面重新渲染，才会重新计算
       getTotal() {
+        console.log('methods total');
         return Date.now();
         // return this.count * this.price;
       },
     },
-    template: `
-     <div> {{message}} {{newTotal}} </div>
-    `
+    // template: `
+    //  <div> {{message}} {{newTotal}} </div>
+    //  <div>{{formatString(message)}}</div>
+    // `
   });
   const vm = app.mount('#root');
 </script>
+
 </html>
