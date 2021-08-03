@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lesson 10</title>
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- v-if直接去除 可以使用v-if-else-->
+    <div v-if="show">Hello World</div>
+
+    <div v-if="conditionOne">if</div>
+    <div v-else-if="conditionTwo">elseif</div>
+    <div v-else>else</div>
+    <!-- v-show通过display -->
+    <div v-show="show">Bye World</div>
+  </div>
 </body>
 <script>
   const app = Vue.createApp({
@@ -18,17 +29,18 @@
         conditionTwo: true
       }
     },
-    template: `
-      <div v-if="show">Hello World</div>
+    // template: `
+    //   <div v-if="show">Hello World</div>
 
-      <div v-if="conditionOne">if</div>
-      <div v-else-if="conditionTwo">elseif</div>
-      <div v-else>else</div>
+    //   <div v-if="conditionOne">if</div>
+    //   <div v-else-if="conditionTwo">elseif</div>
+    //   <div v-else>else</div>
 
-      <div v-show="show">Bye World</div>
-    `
+    //   <div v-show="show">Bye World</div>
+    // `
   });
 
   const vm = app.mount('#root');
 </script>
+
 </html>
