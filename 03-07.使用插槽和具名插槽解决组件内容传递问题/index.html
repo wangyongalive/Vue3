@@ -14,7 +14,7 @@
   // slot 中使用的数据，作用域的问题
   // 父模版里调用的数据属性，使用的都是父模版里的数据
   // 子模版里调用的数据属性，使用的都是子模版里的数据
-  // 具名插槽
+  // 具名插槽: v-slot:  <slot name>
   const app = Vue.createApp({
     template: `
       <layout>
@@ -28,6 +28,7 @@
     `
   });
 
+  // slot无法绑定函数
   app.component('layout', {
     template: `
       <div>
