@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lesson 29</title>
-  <style>
-    .header { position: absolute}
-  </style>
-  <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="root"></div>
-</body>
-<script>
-  // 自定义指令 directive
-
-  const app = Vue.createApp({
-    data() {
-      return {
-        distance: 110
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson 29</title>
+    <style>
+      .header {
+        position: absolute;
       }
-    },
-    template: `
-      <div>
-        <div v-pos:right="distance" class="header">
-          <input />
-        </div>
-      </div>
-    `
-  });
+    </style>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // 自定义指令 directive
 
-  app.directive('pos', (el, binding) => {
-    el.style[binding.arg] = (binding.value + 'px');
-  })
+    const app = Vue.createApp({
+      // directives: 局部指令
+      data() {
+        return {
+          distance: 110,
+        };
+      },
+      template: `
+          <div>
+            <div v-pos:right="distance" class="header">
+              <input v-focus/>
+            </div>
+          </div>
+        `,
+    });
 
-  const vm = app.mount('#root');
-</script>
+    // 全局指令
+    // 想在 mounted 和 updated 时触发相同行为，而不关心其他的钩子函数。那么你可以通过将这个回调函数传递给指令来实现：
+    app.directive("pos", (el, binding) => {
+      el.style[binding.arg] = binding.value + "px";
+    });
+
+    app.directive("focus", {
+      mounted(el) {
+        el.focus();
+      },
+    });
+
+    const vm = app.mount("#root");
+  </script>
 </html>
