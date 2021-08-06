@@ -20,7 +20,7 @@
 
   const app = Vue.createApp({
     mixins: [myMixin],
-    number: 2, // 自定义属性
+    number: 2, // 自定义属性  this.$options.number
     template: `
       <div>
         <div>{{this.$options.number}}</div>
@@ -28,6 +28,7 @@
     `
   });
 
+  // 改变mixin和组件中的优先级
   app.config.optionMergeStrategies.number = (mixinVal, appValue) => {
     return mixinVal || appValue;
   }
