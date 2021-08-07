@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lesson 32</title>
-  <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="root"></div>
-</body>
-<script>
-  // plugin 插件, 也是把通用性的功能封装起来
-  const myPlugin = {
-    install(app, options) {
-      app.provide('name', 'Dell Lee');
-      app.directive('focus', {
-        mounted(el) {
-          el.focus();
-        }
-      })
-      app.mixin({
-        mounted(){
-          console.log('mixin')
-        }
-      })
-      app.config.globalProperties.$sayHello = 'hello world';
-    }
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson 32</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // plugin 插件, 也是把通用性的功能封装起来
+    const myPlugin = {
+      install(app, options) {
+        // console.log(app);
+        app.provide("name", "Dell Lee"); // 提供全局的数据
+        app.directive("focus", {
+          mounted(el) {
+            el.focus();
+          },
+        });
+        app.mixin({
+          mounted() {
+            console.log("mixin");
+          },
+        });
+        // 扩展全局属性  $私有的属性
+        app.config.globalProperties.$sayHello = "hello world";
+      },
+    };
 
-  const app = Vue.createApp({
-    template: `
+    const app = Vue.createApp({
+      template: `
       <my-title />
-    `
-  });
+    `,
+    });
 
-  app.component('my-title', {
-    inject: ['name'],
-    mounted() {
-      console.log(this.$sayHello);
-    },
-    template: `<div>{{name}}<input v-focus /></div>`
-  })
+    app.component("my-title", {
+      inject: ["name"], // inject才能使用
+      mounted() {
+        console.log(this.$sayHello);
+      },
+      template: `<div>{{name}}<input v-focus /></div>`,
+    });
 
-  app.use(myPlugin, { name: 'dell'});
-
-  const vm = app.mount('#root');
-</script>
+    // 使用插件
+    app.use(myPlugin, { name: "dell" });
+    const vm = app.mount("#root");
+    // console.log(vm);
+  </script>
 </html>
