@@ -32,7 +32,7 @@
 
   const app = Vue.createApp({
     setup() {
-      // 流程调度中转
+      // 将功能进行拆分 易于维护
       const { list, addItemToList } = listRelativeEffect();
       const { inputValue, handleInputValueChange} = inputRelativeEffect();
       return {
