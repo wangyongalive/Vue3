@@ -20,11 +20,12 @@
     template: `<child @change="handleChange">parent</child>`,
   });
   
+  // child点击后悔触发handleClick方法，然后emit
   app.component('child', {
     template: '<div @click="handleClick">123123</div>',
     setup(props, context) {
       const { h } = Vue;
-      const { attrs, slots, emit } = context;
+      const { attrs, slots, emit } = context; // attrs:None-props 属性 slots 插槽  emit触发事件
       function handleClick() { emit('change'); }
       return { handleClick }
     }
