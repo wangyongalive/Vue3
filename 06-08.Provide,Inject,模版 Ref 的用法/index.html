@@ -10,7 +10,7 @@
   <div id="root"></div>
 </body>
 <script>
-  // provide, inject
+  // provide, inject:子组件不能改变数据，要让父组件改变数据
   // dom ref
   // const app = Vue.createApp({
   //   setup() {
@@ -46,7 +46,7 @@
   const app = Vue.createApp({
     setup() {
       const { ref, onMounted } = Vue;
-      const hello = ref(null);
+      const hello = ref(null); // ref获取节点要和dom上的ref一样
       onMounted(() => {
         console.log(hello.value);
       })
