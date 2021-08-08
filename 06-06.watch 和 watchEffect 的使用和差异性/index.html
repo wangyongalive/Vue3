@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lesson 39</title>
-  <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="root"></div>
-</body>
-<script>
-  // watch 侦听器
-  // watchEffect 侦听器，偏向于 effect
-  const app = Vue.createApp({
-    setup() {
-      const { reactive, watch, watchEffect, toRefs } = Vue;
-      const nameObj = reactive({
-        name: 'dell', englishName: 'lee'
-      })
-      // 具备一定的惰性 lazy
-      // 参数可以拿到原始和当前值
-      // 可以侦听多个数据的变化，用一个侦听器承载
-      watch([() => nameObj.name, () => nameObj.englishName], ([curName, curEng], [prevName, preEng]) => {
-        console.log('watch', curName, prevName, '---', curEng, preEng);
-      }, { immediate: true })
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson 39</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // watch 侦听器
+    // watchEffect 侦听器，偏向于 effect
+    const app = Vue.createApp({
+      setup() {
+        const { reactive, watch, watchEffect, toRefs } = Vue;
+        const nameObj = reactive({
+          name: "dell",
+          englishName: "lee",
+        });
 
-      // 立即执行，没有惰性 immediate
-      // 不需要传递你要侦听的内容，自动会感知代码依赖，不需要传递很多参数，只要传递一个毁掉函数
-      // 不能获取之前数据的值
-      // const stop = watchEffect(() => {
-      //   console.log(nameObj.name);
-      //   console.log(nameObj.englishName);
-      //   setTimeout(() => {
-      //     stop();
-      //   }, 5000)
-      // })
+        // 具备一定的惰性 lazy(第一次不会执行)
+        // 参数可以拿到原始和当前值
+        // 可以侦听多个数据的变化，用一个侦听器承载  数组
+        // 当监听对象上的某个属性,一定要是一个函数
+        watch(
+          [() => nameObj.name, () => nameObj.englishName],
+          ([curName, curEng], [prevName, preEng]) => {
+            console.log("watch", curName, prevName, "---", curEng, preEng);
+          },
+          { immediate: true } // 立即执行
+        );
 
-      const { name, englishName } = toRefs(nameObj);
+        // 立即执行，没有惰性 immediate
+        // 不需要传递你要侦听的内容，自动会感知代码依赖，不需要传递很多参数，只要传递一个回调函数
+        // 不能获取之前数据的值
+        // const stop = watchEffect(() => {
+        //   console.log(nameObj.name);
+        //   console.log(nameObj.englishName);
+        //   setTimeout(() => {
+        //     stop();  // 取消侦听器
+        //   }, 5000)
+        // })
 
-      return { name, englishName }
-    },
-    template: `
+        const { name, englishName } = toRefs(nameObj);
+
+        return { name, englishName };
+      },
+      template: `
       <div>
         <div>
           Name: <input v-model="name"> 
@@ -56,8 +63,8 @@
         </div>
       </div>
     `,
-  });
-  
-  const vm = app.mount('#root');
-</script>
+    });
+
+    const vm = app.mount("#root");
+  </script>
 </html>
