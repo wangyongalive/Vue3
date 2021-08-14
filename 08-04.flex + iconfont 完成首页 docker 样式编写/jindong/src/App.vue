@@ -1,5 +1,6 @@
 <template>
   <div class="docker">
+    <!-- block__element--Modifier -->
     <div class="docker__item docker__item--active">
       <div class="iconfont">&#xe6f3;</div>
       <div class="docker__title">首页</div>
@@ -30,20 +31,20 @@
   width: 100%;
   height: .49rem;
   border-top: 1px solid #F1F1F1;
-  &__item {
+  &__item {  /*.docker__item*/
     flex: 1;
     text-align: center;
     .iconfont {
       margin: .07rem 0 .02rem 0;
       font-size: .18rem;
     }
-    &--active {
+    &--active { /*.docker__item--active*/
       color: #1FA4FC;
     }
   }
   &__title {
     font-size: 20px;
-    transform: scale(.5, .5);
+    transform: scale(.5, .5); /*通过缩放展示10px字体*/
     transform-origin: center top;
   }
 }
