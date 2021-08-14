@@ -25,11 +25,14 @@
     mounted() {
       console.log(this.$attrs.msg);
     },
-    template: `
-      <div :msg="$attrs.msg">Counter</div>
-      <div v-bind="$attrs">Counter</div>
-      <div :msg1="$attrs.msg1">Counter</div>
+    template:`
+    <div>Counter</div>
     `
+    // template: `
+    //   <div :msg="$attrs.msg">Counter</div>
+    //   <div v-bind="$attrs">Counter</div>
+    //   <div :msg1="$attrs.msg1">Counter</div>
+    // `
   });
 
   const vm = app.mount('#root');
