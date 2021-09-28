@@ -12,42 +12,42 @@
   <script>
     // 对数据做校验的插件
     const app = Vue.createApp({
-      data() {
-        return { name: "dell", age: 23 };
+      data () {
+        return { name: 'dell', age: 23 }
       },
       rules: {
         age: {
-          validate: (age) => age > 25,
-          message: "too young, to simple",
+          validate: age => age > 25,
+          message: 'too young, to simple'
         },
         name: {
-          validate: (name) => name.length >= 4,
-          message: "name too short",
-        },
+          validate: name => name.length >= 4,
+          message: 'name too short'
+        }
       },
       template: `
       <div>name:{{name}}, age:{{age}}</div>
-    `,
-    });
+    `
+    })
 
     // 可以写成一个对象(install方法) 也可以直接返回一个函数
     const validatorPlugin = (app, options) => {
       app.mixin({
-        created() {
+        created () {
           for (let key in this.$options.rules) {
-            const item = this.$options.rules[key];
+            const item = this.$options.rules[key]
             // console.log(item);
             this.$watch(key, (value, old) => {
               // console.log(value, old);
-              const result = item.validate(value);
-              if (!result) console.log(item.message);
-            });
+              const result = item.validate(value)
+              if (!result) console.log(item.message)
+            })
           }
-        },
-      });
-    };
+        }
+      })
+    }
 
-    app.use(validatorPlugin);
-    const vm = app.mount("#root");
+    app.use(validatorPlugin)
+    const vm = app.mount('#root')
   </script>
 </html>

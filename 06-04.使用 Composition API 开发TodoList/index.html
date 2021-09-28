@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lesson 37</title>
-  <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="root"></div>
-</body>
-<script>
-  // 关于 list 操作的内容进行了封装
-  const listRelativeEffect = () => {
-    const { reactive } = Vue;
-    const list = reactive([]);
-    const addItemToList = (item) => {
-      list.push(item);
-    }
-    return { list, addItemToList }
-  }
-
-  // 关于 inputValue 操作的内容进行了封装
-  const inputRelativeEffect = () => {
-    const { ref } = Vue;
-    const inputValue = ref('');
-    const handleInputValueChange = (e) => {
-      inputValue.value = e.target.value
-    }
-    return { inputValue, handleInputValueChange}
-  }
-
-  const app = Vue.createApp({
-    setup() {
-      // 将功能进行拆分 易于维护
-      const { list, addItemToList } = listRelativeEffect();
-      const { inputValue, handleInputValueChange} = inputRelativeEffect();
-      return {
-        list, addItemToList,
-        inputValue, handleInputValueChange
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson 37</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // 关于 list 操作的内容进行了封装
+    const listRelativeEffect = () => {
+      const { reactive } = Vue
+      const list = reactive([])
+      const addItemToList = item => {
+        list.push(item)
       }
-    },
-    template: `
+      return { list, addItemToList }
+    }
+
+    // 关于 inputValue 操作的内容进行了封装
+    const inputRelativeEffect = () => {
+      const { ref } = Vue
+      const inputValue = ref('')
+      const handleInputValueChange = e => {
+        inputValue.value = e.target.value
+      }
+      return { inputValue, handleInputValueChange }
+    }
+
+    const app = Vue.createApp({
+      setup () {
+        // 将功能进行拆分 易于维护
+        const { list, addItemToList } = listRelativeEffect()
+        const { inputValue, handleInputValueChange } = inputRelativeEffect()
+        return {
+          list,
+          addItemToList,
+          inputValue,
+          handleInputValueChange
+        }
+      },
+      template: `
       <div>
         <div>
           <input :value="inputValue" @input="handleInputValueChange" />
@@ -50,9 +52,9 @@
           <li v-for="(item, index) in list" :key="index">{{item}}</li>
         </ul>
       </div>
-    `,
-  });
-  
-  const vm = app.mount('#root');
-</script>
+    `
+    })
+
+    const vm = app.mount('#root')
+  </script>
 </html>
