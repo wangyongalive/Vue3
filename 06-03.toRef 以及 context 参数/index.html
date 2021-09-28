@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lesson 36</title>
   <script src="https://unpkg.com/vue@next"></script>
 </head>
+
 <body>
   <div id="root"></div>
 </body>
@@ -17,10 +19,21 @@
         alert('change');
       }
     },
-    template: `<child @change="handleChange">parent</child>`,
+    template: `
+    <div>{{age}}</div>
+    <child @change="handleChange">parent</child>`,
+    setup() {
+      const { reactive, toRef } = Vue;
+      const data = reactive({ name: 'dell' });
+      const age = toRef(data, 'age'); // toRef如果没有值，会给一个默认值 toRefs会报错
+      setTimeout(() => {
+        age.value = 'lee'
+      }, 1000);
+      return {age}
+    }
   });
-  
-  // child点击后悔触发handleClick方法，然后emit
+
+  // child点击后会触发handleClick方法，然后emit
   app.component('child', {
     template: '<div @click="handleClick">123123</div>',
     setup(props, context) {
@@ -32,4 +45,5 @@
   })
   const vm = app.mount('#root');
 </script>
+
 </html>

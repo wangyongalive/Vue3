@@ -49,7 +49,7 @@
   right: 0;
   padding: 0 .18rem;
 }
-.position {
+.position { 
   position: relative;
   padding: .16rem .24rem .16rem 0;
   line-height: .22rem;
@@ -68,7 +68,7 @@
   }
   color: $content-fontcolor;
 }
-.search {
+.search { /*没有设置高度  高度由内容撑开*/
   margin-bottom: .12rem;
   line-height: .32rem;
   background: #F5F5F5;
@@ -88,7 +88,7 @@
 .banner {
   height: 0;
   overflow: hidden;
-  padding-bottom: 25.4%;
+  padding-bottom: 25.4%; /*定义基于父元素宽度的百分比下内边距 防止页面抖动*/
   &__img {
     width: 100%;
   }

@@ -41,11 +41,11 @@
 }
 .position {
   position: relative;
-  padding: .16rem .24rem .16rem 0;
+  padding: .16rem .24rem .16rem 0; /*这里要使用padding 使用margin会使图表也左移*/
   line-height: .22rem;
   font-size: .16rem;
   @include ellipsis;
-  .position__icon {
+  .position__icon { /*css嵌套 样式等级更高*/
     position: relative;
     top: .01rem;
     font-size: .2rem;
