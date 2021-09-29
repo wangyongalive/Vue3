@@ -14,7 +14,7 @@
     const listRelativeEffect = () => {
       const { reactive } = Vue
       const list = reactive([])
-      const addItemToList = item => { // 传递参数，防止耦合
+      const addItemToList = item => { // 传递参数，防止两个对象之间的耦合
         list.push(item)
       }
       return { list, addItemToList }
