@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>lesson 41</title>
-  <script src="https://unpkg.com/vue@next"></script>
-</head>
-<body>
-  <div id="root"></div>
-</body>
-<script>
-  // provide, inject:子组件不能改变数据，要让父组件改变数据
-  // dom ref
-  // const app = Vue.createApp({
-  //   setup() {
-  //     const { provide, ref, readonly } = Vue;
-  //     const name = ref('dell');
-  //     provide('name', readonly(name));
-  //     provide('changeName', (value) => {
-  //       name.value = value;
-  //     });
-  //     return { }
-  //   },
-  //   template: `
-  //     <div>
-  //       <child />
-  //     </div>
-  //   `,
-  // });
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lesson 41</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // provide, inject:子组件不能改变数据，要让父组件改变数据
+    // dom ref
+    // const app = Vue.createApp({
+    //   setup() {
+    //     const { provide, ref, readonly } = Vue;
+    //     const name = ref('dell');
+    //     provide('name', readonly(name)); // 让子组件无法修改
+    //     provide('changeName', (value) => {
+    //       name.value = value; // 父组件修改父组件自己的值
+    //     });
+    //     return { }
+    //   },
+    //   template: `
+    //     <div>
+    //       <child />
+    //     </div>
+    //   `,
+    // });
 
-  // app.component('child', {
-  //   setup() {
-  //     const { inject } = Vue;
-  //     const name = inject('name');
-  //     const changeName = inject('changeName');
-  //     const handleClick = () => {
-  //       changeName('lee');
-  //     }
-  //     return { name, handleClick }
-  //   },
-  //   template: '<div @click="handleClick">{{name}}</div>'
-  // })
+    // app.component('child', {
+    //   setup() {
+    //     const { inject } = Vue;
+    //     const name = inject('name'); // 第二个参数可以写默认值
+    //     const changeName = inject('changeName');
+    //     const handleClick = () => {
+    //       changeName('lee');
+    //     }
+    //     return { name, handleClick }
+    //   },
+    //   template: '<div @click="handleClick">{{name}}</div>'
+    // })
 
-  // CompositionAPI 的语法下，获取真实的 DOM 元素节点
-  const app = Vue.createApp({
-    setup() {
-      const { ref, onMounted } = Vue;
-      const hello = ref(null); // ref获取节点要和dom上的ref一样
-      onMounted(() => {
-        console.log(hello.value);
-      })
-      return { hello }
-    },
-    template: `
+    // CompositionAPI 的语法下，获取真实的 DOM 元素节点
+    const app = Vue.createApp({
+      setup() {
+        const { ref, onMounted } = Vue;
+        const hello = ref(null); // ref获取节点要和dom上的ref一样
+        onMounted(() => {
+          console.log(hello.value); // dom元素节点在value中
+        });
+        return { hello };
+      },
+      template: `
       <div>
         <div ref="hello">hello world</div>
       </div>
     `,
-  });
-  
-  const vm = app.mount('#root');
-</script>
+    });
+
+    const vm = app.mount("#root");
+  </script>
 </html>

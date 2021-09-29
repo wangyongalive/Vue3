@@ -17,7 +17,7 @@
       // beforeUpdate => onBeforeUpdate
       // beforeUnmount => onBeforeUnmount
       // unmouted => onUnmounted
-      setup() {
+      setup () {
         const {
           ref,
           onBeforeMount,
@@ -25,41 +25,41 @@
           onBeforeUpdate,
           onUpdated,
           onRenderTracked,
-          onRenderTriggered,
-        } = Vue;
-        const name = ref("dell");
+          onRenderTriggered
+        } = Vue
+        const name = ref('dell')
         onBeforeMount(() => {
-          console.log("onBeforeMount");
-        });
+          console.log('onBeforeMount')
+        })
         onMounted(() => {
-          console.log("onMounted");
-        });
+          console.log('onMounted')
+        })
         onBeforeUpdate(() => {
-          console.log("onBeforeUpdate");
-        });
+          console.log('onBeforeUpdate')
+        })
         onUpdated(() => {
-          console.log("onUpdated");
-        });
+          console.log('onUpdated')
+        })
         // 每次渲染后重新收集响应式依赖
         onRenderTracked(() => {
-          console.log("onRenderTracked");
-        });
+          console.log('onRenderTracked')
+        })
         // 每次触发页面重新渲染时自动执行
         onRenderTriggered(() => {
-          console.log("onRenderTriggered");
-        });
+          console.log('onRenderTriggered')
+        })
         const handleClick = () => {
-          name.value = "lee";
-        };
-        return { name, handleClick };
+          name.value = 'lee'
+        }
+        return { name, handleClick }
       },
       template: `
       <div @click="handleClick">
         {{name}}
       </div>
-    `,
-    });
+    `
+    })
 
-    const vm = app.mount("#root");
+    const vm = app.mount('#root')
   </script>
 </html>

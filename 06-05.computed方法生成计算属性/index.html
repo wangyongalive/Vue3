@@ -18,7 +18,7 @@
         const handleClick = () => {
           countObj.count += 1;
         };
-        let countAddFive = computed({
+        let countAddFive = computed({ // 对象
           get: () => {
             return countObj.count + 5;
           },

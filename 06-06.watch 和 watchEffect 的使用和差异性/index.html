@@ -25,7 +25,7 @@
         // 可以侦听多个数据的变化，用一个侦听器承载  数组
         // 当监听对象上的某个属性,一定要是一个函数
         watch(
-          [() => nameObj.name, () => nameObj.englishName],
+          [() => nameObj.name, () => nameObj.englishName], // 箭头函数
           ([curName, curEng], [prevName, preEng]) => {
             console.log("watch", curName, prevName, "---", curEng, preEng);
           },
