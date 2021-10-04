@@ -6,9 +6,9 @@ export default createStore({
       state.name = str;
     }
   },
-  actions: {
+  actions: { 
     getData(store) {
-      setTimeout(() => {
+      setTimeout(() => { // 异步方法
         store.commit('changeName', 'hello')
       }, 2000)
     }
