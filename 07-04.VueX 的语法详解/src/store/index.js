@@ -11,6 +11,7 @@ export default createStore({
     }
   },
   // dispatch 和 actions 做关联
+  // actions里面做异步操作
   actions: {
     // change(store, str) {
     //   setTimeout(() => {
