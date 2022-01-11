@@ -41,19 +41,21 @@
 }
 .position {
   position: relative;
-  padding: .16rem .24rem .16rem 0; /*这里要使用padding 使用margin会使图表也左移*/
+  padding: .16rem .24rem .16rem 0; /*这里要使用padding 使用margin会使notice图表也左移*/
+  /*.24rem是padding右边的距离 相对定位会参考padding*/
+  // margin-right: .24rem;
   line-height: .22rem;
   font-size: .16rem;
-  @include ellipsis;
-  .position__icon { /*css嵌套 样式等级更高*/
+  @include ellipsis; // minxins
+  .position__icon { /*css嵌套 position__icon优先级高于position 样式等级更高*/
     position: relative;
     top: .01rem;
     font-size: .2rem;
   }
   .position_notice {
-    position: absolute;
+    position: absolute; /*在最右侧 相对父元素定位*/
     right: 0;
-    top: .17rem;
+    top: .17rem; /*定位的时候会参考padding*/
     font-size: .2rem;
   }
   color: $content-fontcolor;

@@ -40,7 +40,7 @@
       // padding: 0.07rem 0 0.02rem 0;
       font-size: 0.18rem;
     }
-    &--active {
+    &--active { /*不一定是嵌套关系*/
       /*.docker__item--active*/
       color: #1fa4fc;
     }
