@@ -23,10 +23,12 @@
 </template>
 
 <script>
+/*函数超过100行就不容易阅读了*/
+/*把系统级别的引入放到最上面  */
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { post } from '../../utils/request'
-import Toast, { useToastEffect } from '../../components/Toast'
+import Toast, { useToastEffect } from '../../components/Toast' /*默认导出不要用{},非默认导出的要用{}*/
 
 export default {
   name: 'Login',
@@ -57,6 +59,7 @@ export default {
       router.push({ name: 'Register' })
     }
 
+     /*模板中可以使用了*/
     return { handleLogin, handleRegisterClick, data, toastData }
   }
 }

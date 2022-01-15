@@ -8,7 +8,7 @@ import { reactive } from 'vue'
 export default {
   props: ['message']
 }
-
+/*把toast相关的功能都放到一起*/
 export const useToastEffect = () => {
 
   const toastData = reactive({
