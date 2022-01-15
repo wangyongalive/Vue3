@@ -41,7 +41,7 @@ const router = createRouter({
 
 router.beforeEach((to, from ,next) => {
   const { isLogin } = localStorage;
-  const { name } = to;
+  const { name } = to; /*解构出路由名*/
   const isLoginOrRegister = (name === "Login" || name === "Register");
   (isLogin || isLoginOrRegister) ? next() : next({ name: 'Login'});
 })
