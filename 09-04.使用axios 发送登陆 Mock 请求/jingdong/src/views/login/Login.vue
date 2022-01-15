@@ -26,11 +26,13 @@ import { useRouter } from 'vue-router';
 import axios from 'axios'
 import { reactive } from 'vue'
 
+/*修改请求头的Content-Type*/
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export default {
   name: 'Login',
   setup() {
+    /*双向绑定*/
     const data = reactive({
       username: '',
       password: ''
