@@ -10,7 +10,7 @@ const routes = [{
     path: '/login',
     name: 'Login',
     component: Login,
-    beforeEnter(to, from, next) { /*访问login路由才会执行*/
+    beforeEnter(to, from, next) { /* 路由独享的守卫 访问login路由才会执行*/
       const { isLogin } = localStorage;
       isLogin ? next({ name: 'Home'}):  next(); /*三元运算符*/
     }
@@ -30,6 +30,8 @@ const router = createRouter({
   routes
 })
 
+
+// 全局前置守卫
 router.beforeEach((to, from ,next) => {
   const { isLogin } = localStorage;
   /*login直接进入login页面 否则会进入死循环*/
