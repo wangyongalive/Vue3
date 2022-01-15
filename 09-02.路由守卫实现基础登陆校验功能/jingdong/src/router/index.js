@@ -35,7 +35,7 @@ const router = createRouter({
 router.beforeEach((to, from ,next) => {
   const { isLogin } = localStorage;
   /*login直接进入login页面 否则会进入死循环*/
-  (isLogin || to.name === "Login") ? next() : next({ name: 'Login'});
+  (isLogin || to.name === "Login") ? next() : next({ name: 'Login'}); /*next({ name: 'Login'})会再次执行路由守卫*/
 })
 
 export default router
