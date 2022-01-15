@@ -10,9 +10,9 @@ const routes = [{
     path: '/login',
     name: 'Login',
     component: Login,
-    beforeEnter(to, from, next) {
+    beforeEnter(to, from, next) { /*访问login路由才会执行*/
       const { isLogin } = localStorage;
-      isLogin ? next({ name: 'Home'}):  next();
+      isLogin ? next({ name: 'Home'}):  next(); /*三元运算符*/
     }
   },
   // {
@@ -32,6 +32,7 @@ const router = createRouter({
 
 router.beforeEach((to, from ,next) => {
   const { isLogin } = localStorage;
+  /*login直接进入login页面 否则会进入死循环*/
   (isLogin || to.name === "Login") ? next() : next({ name: 'Login'});
 })
 

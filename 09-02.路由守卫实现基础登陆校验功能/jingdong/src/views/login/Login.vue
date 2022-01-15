@@ -17,7 +17,7 @@ import { useRouter } from 'vue-router';
 export default {
   name: 'Login',
   setup() {
-    const router = useRouter();
+    const router = useRouter(); /*获取路由实例*/
     const handleLogin = () => {
       localStorage.isLogin = true;
       router.push({name: 'Home'})
