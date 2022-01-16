@@ -17,11 +17,11 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style lang="scss" scoped>
-@import '../../style/viriables.scss';
+@import "../../style/viriables.scss";
 .cart {
   position: absolute;
   left: 0;
@@ -30,49 +30,49 @@ export default {}
 }
 .check {
   display: flex;
-  height: .49rem;
-  border-top: .01rem solid $content-bgColor;
-  line-height: .49rem;
+  height: 0.49rem;
+  border-top: 0.01rem solid $content-bgColor;
+  line-height: 0.49rem;
   &__icon {
     position: relative;
-    width: .84rem;
+    width: 0.84rem;
     &__img {
       display: block;
-      margin: .12rem auto;
-      width: .28rem;
-      height: .26rem;
+      margin: 0.12rem auto; /*高度是49px 垂直居中 (50-26)/2*/
+      width: 0.28rem;
+      height: 0.26rem;
     }
     &__tag {
       position: absolute;
-      right: .2rem;
-      top: .04rem;
-      width: .2rem;
-      height: .2rem;
-      line-height: .2rem;
+      right: 0.2rem;
+      top: 0.04rem;
+      width: 0.2rem;
+      height: 0.2rem;
+      line-height: 0.2rem; /*line-height要重新定义 否则会继承check的line-height*/
       background-color: $hightlight-fontColor;
       border-radius: 50%;
-      font-size: .12rem;
+      font-size: 0.12rem;
       text-align: center;
       color: #fff;
-      transform: scale(.5);
+      transform: scale(0.5);
     }
   }
   &__info {
     flex: 1;
     color: $content-fontcolor;
-    font-size: .12rem;
+    font-size: 0.12rem;
     &__price {
-      line-height: .49rem;
+      line-height: 0.49rem;
       color: $hightlight-fontColor;
-      font-size: .18rem;
+      font-size: 0.18rem;
     }
   }
   &__btn {
-    width: .98rem;
-    background-color: #4FB0F9;
+    width: 0.98rem;
+    background-color: #4fb0f9;
     text-align: center;
-    color: #FFF;
-    font-size: .14rem;
+    color: #fff;
+    font-size: 0.14rem;
   }
 }
 </style>
