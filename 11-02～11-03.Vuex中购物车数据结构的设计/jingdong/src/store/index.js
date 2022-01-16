@@ -1,12 +1,12 @@
-import Vuex from 'vuex'
+import Vuex from "vuex";
 
 export default Vuex.createStore({
   state: {
     cartList: {
       // 第一层级是商铺的id
       // shopId: {
-        // 第二层是商品id
-        // 第二层内容是商品内容以及购物数量
+      // 第二层是商品id
+      // 第二层内容是商品内容以及购物数量
       //   productId: {
       //     _id: '1',
       //     name: '番茄250g/份',
@@ -17,25 +17,26 @@ export default Vuex.createStore({
       //     count: 2
       //   },
       // },
-    }
+    },
   },
   mutations: {
     addItemToCart(state, payload) {
       const { shopId, productId, productInfo } = payload;
-      let shopInfo = state.cartList[shopId]
-      if(!shopInfo) { shopInfo = {} }
-      let product = shopInfo[productId]
-      if(!product) {
-        product = productInfo
-        product.count = 0
+      let shopInfo = state.cartList[shopId];
+      if (!shopInfo) {
+        shopInfo = {}; /*最开始vuex里面没有shopInfo*/
       }
-      product.count += 1
-      shopInfo[productId] = product
-      state.cartList[shopId] = shopInfo
-    }
+      let product = shopInfo[productId];
+      if (!product) {
+        /*最开始没有商品*/
+        product = productInfo;
+        product.count = 0;
+      }
+      product.count += 1;
+      shopInfo[productId] = product;
+      state.cartList[shopId] = shopInfo; /*保存赋值*/
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});
