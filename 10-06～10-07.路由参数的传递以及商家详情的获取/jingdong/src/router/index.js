@@ -1,29 +1,38 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from "vue-router";
 
-const routes = [{
-    path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/home/Home')
-  }, {
-    path: '/shop/:id',
-    name: 'Shop',
-    component: () => import(/* webpackChunkName: "shop" */ '../views/shop/Shop')
-  }, {
-    path: '/register',
-    name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/register/Register'),
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: () =>
+      import(/* webpackChunkName: "home" */ "../views/home/Home"),
+  },
+  {
+    /*路由参数的传递*/
+    path: "/shop/:id",
+    name: "Shop",
+    component: () =>
+      import(/* webpackChunkName: "shop" */ "../views/shop/Shop"),
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/register/Register"),
     beforeEnter(to, from, next) {
       const { isLogin } = localStorage;
-      isLogin ? next({ name: 'Home'}):  next();
-    }
-  }, {
-    path: '/login',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/login/Login'),
+      isLogin ? next({ name: "Home" }) : next();
+    },
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/login/Login"),
     beforeEnter(to, from, next) {
       const { isLogin } = localStorage;
-      isLogin ? next({ name: 'Home'}):  next();
-    }
+      isLogin ? next({ name: "Home" }) : next();
+    },
   },
   // {
   //   path: '/about',
@@ -31,20 +40,20 @@ const routes = [{
   //   // route level code-splitting
   //   // this generates a separate chunk (about.[hash].js) for this route
   //   // which is lazy-loaded when the route is visited.
-  //   
+  //
   // }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
-router.beforeEach((to, from ,next) => {
+router.beforeEach((to, from, next) => {
   const { isLogin } = localStorage;
   const { name } = to;
-  const isLoginOrRegister = (name === "Login" || name === "Register");
-  (isLogin || isLoginOrRegister) ? next() : next({ name: 'Login'});
-})
+  const isLoginOrRegister = name === "Login" || name === "Register";
+  isLogin || isLoginOrRegister ? next() : next({ name: "Login" });
+});
 
-export default router
+export default router;
