@@ -12,10 +12,10 @@
 <script>
 import { ref } from 'vue'
 import { get } from '../../utils/request'
-import ShopInfo from '../../components/ShopInfo'
+import ShopInfo from '../../components/ShopInfo' /*将组件抽离*/
 
 const useNearbyListEffect = () => {
-  const nearbyList = ref([]);
+  const nearbyList = ref([]); /*定义响应式数据*/
   const getNearbyList = async () => {
     const result = await get('/api/shop/hot-list')
     if (result?.errno === 0 && result?.data?.length) {

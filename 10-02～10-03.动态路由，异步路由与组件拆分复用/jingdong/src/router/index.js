@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+/*异步路由*/
 const routes = [{
     path: '/',
     name: 'Home',

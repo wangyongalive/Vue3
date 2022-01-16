@@ -26,6 +26,6 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  padding: 0 .18rem;
+  padding: 0 .18rem; /*左右留18像素*/
 }
 </style>
