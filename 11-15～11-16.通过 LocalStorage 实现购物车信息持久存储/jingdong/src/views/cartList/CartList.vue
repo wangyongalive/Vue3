@@ -1,16 +1,17 @@
 <template>
+  <!-- 购物车 -->
   <div class="cart">作业部分代码，同学尝试实现</div>
 </template>
 
 <script>
 export default {
-  name: 'CartList'
-}
+  name: "CartList",
+};
 </script>
 
 <style lang="scss" scoped>
 .cart {
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   text-align: center;
 }
 </style>
